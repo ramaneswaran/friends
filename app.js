@@ -63,6 +63,6 @@ app.post('/check', (req, res)=>{
 });
 
 
-app.listen(3000 || process.env.PORT, ()=>{
-    console.log('Listening to some port');
+app.listen(process.env.PORT || 3000, ()=>{
+    console.log("Listening to port");
 });
