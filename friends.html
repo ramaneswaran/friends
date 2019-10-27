@@ -26,10 +26,22 @@
     <script>
         $(document).ready(function(){
             $('#clicker').click(function(){
-        
-                $.post('https://friendswatch.herokuapp.com/check', {"date" : new Date()}, function(data, status){
-                    console.log(data);
-                }, 'json');
+                const obj = {date : "Mon Oct 28 2019 01:22:21 GMT+0530 (India Standard Time)"}
+
+                $.ajax({
+                    url: 'http://192.168.43.69:3000/check',
+                    type: 'post',
+                    data: {
+                        date: "Mon Oct 28 2019 01:22:21 GMT+0530 (India Standard Time)"
+                    },
+                    headers: {
+                        "Content-Type": 'application/x-www-form-urlencoded'  //for object property name, use quoted notation shown in second
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.info(data);
+                    }
+                });
             });
         });
     </script>
