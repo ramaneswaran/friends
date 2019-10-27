@@ -48,7 +48,7 @@ app.post('/check', (req, res)=>{
         
         //Set response object
         response.url = url;
-        response.canWatch = true;
+        response.canWatch = 'true';
         
         //Update current data
         if(data.episode == '24'){
