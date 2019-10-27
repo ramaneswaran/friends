@@ -27,7 +27,7 @@
         $(document).ready(function(){
             $('#clicker').click(function(){
                 const date = new Date();
-                
+                console.log(date);
                 $.post('https://friendswatch.herokuapp.com/check', {"date" : date}, function(data, status){
                     console.log(data);
                 }, 'json');
