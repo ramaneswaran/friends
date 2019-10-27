@@ -26,10 +26,9 @@
     <script>
         $(document).ready(function(){
             $('#clicker').click(function(){
-                const reqObj = {
-                    "date": new Date()
-                };
-                $.post('https://friendswatch.herokuapp.com/check', reqObj, function(data, status){
+                const date = new Date();
+                
+                $.post('https://friendswatch.herokuapp.com/check', {"date" : date}, function(data, status){
                     console.log(data);
                 }, 'json');
             });
