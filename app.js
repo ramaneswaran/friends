@@ -13,26 +13,29 @@ jsonfile.readFile(file, function (err, obj) {
   });
 
 app.get('/', (req, res)=>{
-    res.send(data);
+    res.send('shit')
 })
 app.post('/check', (req, res)=>{
     var response = {
         canWatch: 'false',
         url: 'https://vtop.vit.ac.in/vtop/initialProcess'
     }
-    curDate = req.body.date;
+    //const curDate = new Date(req.body.date);
+    const curDate = new Date();
+    const prevDate = new Date(data.date);
     //Check if the first watch of the day
-    if(data.date == curDate){
+    if(prevDate.getDate() == curDate.getDate()){
         res.send(JSON.stringify(response));
     } else {
 
         //Ok redirect to new url
         var url = data.url;
-        url.replace('SeNr', data.season);
-        url.replace('EpNr', data.episode);
+        url = url.replace('SeNr', data.season);
+        url = url.replace('EpNr', data.episode);
         
+        //Set response object
         response.url = url;
-        data.url = url;
+        response.canWatch = true;
         //Update current data
         if(data.episode == '24'){
             data.episode = '1';
@@ -49,7 +52,14 @@ app.post('/check', (req, res)=>{
         res.send(JSON.stringify(response));
 
     }
+});
+
+app.post('/wtf', (req, res)=>{
+    console.log(req.body);
+    res.send(req.body);
 })
+
+
 app.listen(3000 || process.env.PORT, ()=>{
     console.log('Listening to some port');
 });
