@@ -3,6 +3,13 @@ const jsonfile = require('jsonfile');
 
 const app = express();
 
+//Allowing CORS 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // parse application/json
 app.use(express.json());
 
@@ -15,6 +22,7 @@ jsonfile.readFile(file, function (err, obj) {
     if (err) console.error(err)
     data = obj;
   });
+
 
 
 app.post('/check', (req, res)=>{
