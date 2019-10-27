@@ -4,9 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
     <title>Friends Watch</title>
+
+      <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <style>
+        .carousel-item{
+            height: 100vh;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $('#clicker').click(function(){
+                const reqObj = {
+                    "date": new Date()
+                };
+                $.post('https://friendswatch.herokuapp.com/check', reqObj, function(data, status){
+                    console.log(data);
+                }, 'json');
+            });
+        });
+    </script>
 </head>
 <body>
-    
+
+    <!--Carousel-->
+    <div id="carouselSlide" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./images.jpeg" class=" d-block w-100" alt="A cool background image">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>F.R.I.E.N.D.S</h5>
+                    <a href="#" id="clicker" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
 </body>
 </html>
