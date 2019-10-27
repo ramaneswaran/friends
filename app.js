@@ -30,7 +30,7 @@ app.post('/check', (req, res)=>{
         canWatch: 'false',
         url: 'https://vtop.vit.ac.in/vtop/initialProcess'
     }
-
+    console.log(req.body);
     const curDate = new Date(req.body.date);
     const prevDate = new Date(data.date);
     console.log('Current date is ',curDate.getDate());
