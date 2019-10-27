@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ramaneswaran/friends/issues"
   },
-  "homepage": "https://github.com/ramaneswaran/friends#readme"
+  "homepage": "https://github.com/ramaneswaran/friends#readme",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1"
+  }
 }
