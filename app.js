@@ -12,6 +12,7 @@ app.use(function(req, res, next) {
 
 // parse application/json
 app.use(express.json());
+app.use(express.urlencoded({extended :true}));
 
 //Setting json file path and a storage variable
 const file = 'file.json';
