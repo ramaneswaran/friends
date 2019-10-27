@@ -3,6 +3,10 @@ const jsonfile = require('jsonfile');
 
 const app = express();
 
+// parse application/json
+app.use(express.json());
+
+//Setting json file path and a storage variable
 const file = 'file.json';
 var data;
 
@@ -12,17 +16,17 @@ jsonfile.readFile(file, function (err, obj) {
     data = obj;
   });
 
-app.get('/', (req, res)=>{
-    res.send('shit')
-})
+
 app.post('/check', (req, res)=>{
     var response = {
         canWatch: 'false',
         url: 'https://vtop.vit.ac.in/vtop/initialProcess'
     }
-    //const curDate = new Date(req.body.date);
-    const curDate = new Date();
+
+    const curDate = new Date(req.body.date);
     const prevDate = new Date(data.date);
+    console.log('Current date is ',curDate.getDate());
+    console.log('Prev date is ', prevDate.getDate());
     //Check if the first watch of the day
     if(prevDate.getDate() == curDate.getDate()){
         res.send(JSON.stringify(response));
@@ -36,6 +40,7 @@ app.post('/check', (req, res)=>{
         //Set response object
         response.url = url;
         response.canWatch = true;
+        
         //Update current data
         if(data.episode == '24'){
             data.episode = '1';
@@ -43,6 +48,9 @@ app.post('/check', (req, res)=>{
         } else {
             data.episode = String(Number(data.episode) + 1);
         }
+
+        //Update the date to current date
+        data.date = curDate;
 
         //Write data back to file
         jsonfile.writeFile(file, data, function (err) {
@@ -53,11 +61,6 @@ app.post('/check', (req, res)=>{
 
     }
 });
-
-app.post('/wtf', (req, res)=>{
-    console.log(req.body);
-    res.send(req.body);
-})
 
 
 app.listen(3000 || process.env.PORT, ()=>{
